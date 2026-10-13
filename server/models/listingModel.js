@@ -12,11 +12,11 @@ const listingModel = {
 
     if (industry) {
       params.push(`%${industry}%`);
-      query += ` AND c.industry ILIKE $${params.length}`;
+      query += ` AND c.industry LIKE $${params.length}`;
     }
     if (location) {
       params.push(`%${location}%`);
-      query += ` AND c.location ILIKE $${params.length}`;
+      query += ` AND c.location LIKE $${params.length}`;
     }
 
     query += ' ORDER BY l.posted_at DESC';

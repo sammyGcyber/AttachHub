@@ -1,8 +1,13 @@
 import api from './api';
 
 export const fetchListings = async (params = {}) => {
-  const response = await api.get('/listings', { params });
-  return response.data;
+  try {
+    const response = await api.get('/listings', { params });
+    return response.data;
+  } catch (err) {
+    console.warn('API unavailable, returning empty listings:', err.message);
+    return [];
+  }
 };
 
 export const fetchListingById = async (id) => {

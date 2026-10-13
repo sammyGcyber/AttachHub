@@ -6,8 +6,13 @@ export const submitApplication = async (data) => {
 };
 
 export const fetchStudentApplications = async () => {
-  const response = await api.get('/applications/student');
-  return response.data;
+  try {
+    const response = await api.get('/applications/student');
+    return response.data;
+  } catch (err) {
+    console.warn('API unavailable, returning empty applications:', err.message);
+    return [];
+  }
 };
 
 export const fetchListingApplicants = async (listingId) => {
